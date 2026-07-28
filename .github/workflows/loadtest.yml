@@ -32,7 +32,8 @@ jobs:
 
       # Run the load test
       - name: Azure Load Testing
-        uses: azure/load-testing@v1.1.27
+        # Pinning the action to a specific commit SHA to avoid breaking changes in the future.
+        uses: azure/load-testing@5c5d948af73990aa1c0732e255897d1b1b4c0e7b # v1.2.5
         with:
           loadTestConfigFile: 'config.yaml'
           loadTestResource: ${{ env.LOAD_TEST_RESOURCE}}
@@ -52,4 +53,4 @@ jobs:
           name: loadTestResults
           path: ${{github.workspace}}/loadTest
 
-          
+
