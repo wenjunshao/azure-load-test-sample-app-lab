@@ -8,9 +8,9 @@ permissions:
 
 env:
   # For AZURE_WEBAPP_NAME enter just the name, not the full URL.
-  AZURE_WEBAPP_NAME: <your web app name> 
+  AZURE_WEBAPP_NAME: <your web app name>
   RESOURCE_GROUP: az2006-rg
-  
+
 
 jobs:
   build:
@@ -23,7 +23,7 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: '8.0.x'
+        dotnet-version: '10.0.x'
 
     #Build/publish the .net project
     - name: Install dependencies
@@ -35,7 +35,7 @@ jobs:
         dotnet publish ./az2006webapp.csproj -c Release -o ${{env.DOTNET_ROOT}}/myapp
         cd ${{env.DOTNET_ROOT}}/myapp
         zip -r ../app.zip .
-    
+
     # upload the published website code artifacts
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v4
